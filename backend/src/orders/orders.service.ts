@@ -1,10 +1,10 @@
 import { Inject, Injectable, Request } from '@nestjs/common';
+import { REQUEST } from '@nestjs/core';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { Order } from './entities/order.entity';
-import { REQUEST } from '@nestjs/core';
+import { Order, OrderStatus } from './entities/order.entity';
 
 type UserFromToken = {
   sub: number;
@@ -22,24 +22,23 @@ export class OrdersService {
     @InjectRepository(Order) private ordersRepository: Repository<Order>,
   ) {}
 
-  create(createOrderDto: CreateOrderDto) {
-    const newOrder = this.ordersRepository.create(createOrderDto);
-    return this.ordersRepository.save(newOrder);
+  async create(createOrderDto: CreateOrderDto) {
+    const order = await this.ordersRepository.findOne({
+      where: { status: OrderStatus.PENDING, user: createOrderDto.user },
+    });
+    if (!order?.id) {
+      const newOrder = this.ordersRepository.create(createOrderDto);
+      return this.ordersRepository.save(newOrder);
+    }
+    return 'Cart Already available!';
   }
 
   findAll() {
-    return this.ordersRepository.find();
+    return this.ordersRepository.find({
+      relations: ['orderItems', 'user'],
+      where: { user: { id: this.request.user.sub } },
+    });
   }
-  // async findAll(page: number, limit: number) {
-  //   const skip = (page - 1) * limit;
-
-  //   const [result, total] = await this.ordersRepository.findAndCount({
-  //     relations: ['tags'],
-  //     skip,
-  //     take: limit,
-  //   });
-  //   return { result, total };
-  // }
 
   findOne(id: number) {
     return this.ordersRepository.findOneBy({ id });

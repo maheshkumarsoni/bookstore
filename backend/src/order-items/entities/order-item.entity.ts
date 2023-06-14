@@ -11,8 +11,8 @@ export class OrderItem {
   quantity: number;
 
   @ManyToOne(() => Book, (book) => book.id)
-  books: Book[];
+  books: Book;
 
   @ManyToOne(() => Order, (order) => order.orderItems)
-  orders: Order[];
+  orders: Order;
 }

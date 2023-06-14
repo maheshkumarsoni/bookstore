@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptionsWhere, Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './entities/book.entity';
@@ -16,14 +16,14 @@ export class BooksService {
     return this.booksRepository.save(newBook);
   }
 
-  // findAll() {
-  // return this.booksRepository.find();
-  // }
-  async findAll(page: number, limit: number) {
+  async findAll(page: number, limit: number, search: string) {
     const skip = (page - 1) * limit;
 
     const [result, total] = await this.booksRepository.findAndCount({
       relations: ['tags'],
+      where: {
+        title: Like(`%${search}%`),
+      },
       skip,
       take: limit,
     });
