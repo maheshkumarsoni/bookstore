@@ -68,7 +68,7 @@ export default function BooksContainer() {
           }>
           <div className='pb-4 text-black dark:text-white'>
             <div className='grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 place-items-center'>
-              {bookList?.map((item, i) => (
+              {bookList?.map((item: any, i: number) => (
                 <div
                   key={i}
                   className='relative w-56 p-2 border border-gray-300 h-80 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
@@ -84,7 +84,7 @@ export default function BooksContainer() {
                       {item?.tags?.map((obj: any, j: number) => (
                         <span
                           key={j}
-                          className='p-1 text-sm text-center text-white truncate bg-black border border-white rounded-xl dark:text-black dark:bg-white hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white hover:border-black dark:hover:border-white'>
+                          className='p-1 text-sm text-center text-black truncate bg-white border border-white cursor-pointer dark:text-white dark:bg-black hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-white dark:hover:border-black'>
                           {obj.tag}-{j}
                         </span>
                       ))}
@@ -96,7 +96,7 @@ export default function BooksContainer() {
                     </h3>
                     <p className='text-sm truncate'>Writer: {item?.writer}</p>
                   </div>
-                  <button className='absolute p-2 text-sm text-white truncate bg-black border border-white cursor-pointer -right-2 -bottom-2 dark:text-black dark:bg-white hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white hover:border-black dark:hover:border-white'>
+                  <button className='absolute p-2 text-sm text-black truncate bg-white border border-white cursor-pointer -right-2 -bottom-2 dark:text-white dark:bg-black hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-white dark:hover:border-black'>
                     Add to Cart
                   </button>
                 </div>
@@ -125,12 +125,21 @@ export default function BooksContainer() {
                   width={100}
                   alt=''
                 />
-                <div>
-                  <h3>
-                    {item?.title}-{i + 1}
+                <div className='flex flex-col flex-1 gap-4 pr-4'>
+                  <h3 className='truncate'>
+                    Title: {item?.title}-{i + 1}
                   </h3>
-                  <p>by {item?.writer}</p>
-                  <button className='border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
+                  <p className='text-sm truncate'>Writer: {item?.writer}</p>
+                  <div className='flex gap-2'>
+                    {item?.tags?.map((obj: any, j: number) => (
+                      <span
+                        key={j}
+                        className='p-1 text-sm text-center text-black truncate bg-white border border-white cursor-pointer dark:text-white dark:bg-black hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-white dark:hover:border-black'>
+                        {obj.tag}-{j}
+                      </span>
+                    ))}
+                  </div>
+                  <button className='p-1 text-sm text-black truncate bg-white border border-white cursor-pointer -right-2 -bottom-2 dark:text-white dark:bg-black hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-white dark:hover:border-black'>
                     Add to Cart
                   </button>
                 </div>
