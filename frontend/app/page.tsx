@@ -13,11 +13,11 @@ export default function Home() {
         <div className='flex items-end justify-center'>Cart</div>
       </header>
 
-      <div className='flex-1 w-full p-4 my-20 overflow-auto sm:px-6 sm:py-4'>
+      <div className='flex-1 w-full p-4 my-20 overflow-auto font-mono sm:px-6 sm:py-4'>
         <BooksContainer />
       </div>
 
-      <footer className='fixed bottom-0 flex w-full p-4 text-center border-t border-gray-300 sm:px-6 sm:py-4 lg:text-right bg-gradient-to-t from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
+      <footer className='fixed bottom-0 flex w-full p-4 font-mono text-center border-t border-gray-300 sm:px-6 sm:py-4 lg:text-right bg-gradient-to-t from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
         <a
           href='https://github.com/maheshkumarsoni'
           className='w-full transition-colors group'
