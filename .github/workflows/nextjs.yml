@@ -56,7 +56,9 @@ jobs:
         with:
           node-version: "16"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-path: ${{ github.workspace }}/frontend/$(if [[ ${{ steps.detect-package-manager.outputs.manager }} == "npm" ]]; then echo "package-lock.json"; else echo "yarn.lock"; fi }}
+          cache-dependency-path: |
+            ${{ github.workspace }}/frontend/$(if [[ ${{ steps.detect-package-manager.outputs.manager }} == "npm" ]]; then echo "package-lock.json"; else echo "yarn.lock"; fi )
+            ${{ github.workspace }}/frontend/node_modules
       - name: Setup Pages
         uses: actions/configure-pages@v3
         with:
