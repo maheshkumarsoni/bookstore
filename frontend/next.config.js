@@ -6,6 +6,7 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     domains: ['images-na.ssl-images-amazon.com'],
   },
+  assetPrefix: '/bookstore'
 };
 
 module.exports = nextConfig;
