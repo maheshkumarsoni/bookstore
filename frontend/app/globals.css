@@ -25,3 +25,38 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox Scrollbar CSS */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #abababcc transparent;
+}
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  @apply w-1 h-1 sm:w-1.5 sm:h-1.5;
+}
+
+*::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+/* Scrollbar thumb */
+*::-webkit-scrollbar-thumb {
+  @apply bg-[#ABABABCC]
+         rounded-full
+         border
+         border-white;
+}
+/* ===== Scrollbar CSS ===== */
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
