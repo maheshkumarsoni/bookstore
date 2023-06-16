@@ -84,8 +84,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./out
-
+          name: nextjs-app
+          path: frontend/.next
   # Deployment job
   deploy:
     environment:
