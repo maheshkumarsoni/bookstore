@@ -81,7 +81,7 @@ export default function BooksContainer() {
                       alt=''
                     />
                     <div className='flex flex-col flex-1 gap-2'>
-                      {item?.tags?.map((obj, j) => (
+                      {item?.tags?.map((obj: any, j: number) => (
                         <span
                           key={j}
                           className='p-1 text-sm text-center text-white truncate bg-black border border-white rounded-xl dark:text-black dark:bg-white hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white hover:border-black dark:hover:border-white'>
