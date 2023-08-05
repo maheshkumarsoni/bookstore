@@ -1,2 +1,2 @@
-# bookstore
-Creating bookstore application for an Assignment using Next.js and Nest.js
+# [e-commerce](https://maheshkumarsoni.github.io/e-commerce)
+Creating e-commerce application using Next.js and Nest.js
